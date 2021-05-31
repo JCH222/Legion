@@ -1,7 +1,6 @@
 namespace Legion.Test
 {
     using NUnit.Framework;
-	using Unity.Mathematics;
 
 	public class Determinant
     {
@@ -26,8 +25,8 @@ namespace Legion.Test
         public void TestFloatDeterminant2X2()
         {
             // Null result with low values
-            float lowValue1 = math.pow(10.0f, -15.0f);
-            float lowValue2 = math.pow(10.0f, -10.0f);
+            float lowValue1 = 1.0E-15f;
+            float lowValue2 = 1.0E-10f;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 lowValue1, lowValue2, lowValue1, lowValue2), 0.0f);
 
@@ -38,8 +37,8 @@ namespace Legion.Test
                 mediumValue1, mediumValue2, mediumValue1, mediumValue2), 0.0f);
 
             // Null result with high values
-            float highValue1 = math.pow(10.0f, 15.0f);
-            float highValue2 = math.pow(10.0f, 10.0f);
+            float highValue1 = 1.0E15f;
+            float highValue2 = 1.0E10f;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 highValue1, highValue2, highValue1, highValue2), 0.0f);
 
@@ -53,8 +52,8 @@ namespace Legion.Test
         public void TestDoubleDeterminant2X2()
         {
             // Null result with low values
-            double lowValue1 = math.pow(10.0d, -25.0d);
-            double lowValue2 = math.pow(10.0d, -15.0d);
+            double lowValue1 = 1.0E-25d;
+            double lowValue2 = 1.0E-15d;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 lowValue1, lowValue2, lowValue1, lowValue2), 0.0d);
 
@@ -65,8 +64,8 @@ namespace Legion.Test
                 mediumValue1, mediumValue2, mediumValue1, mediumValue2), 0.0d);
 
             // Null result with high values
-            double highValue1 = math.pow(10.0d, 25.0d);
-            double highValue2 = math.pow(10.0d, 20.0d);
+            double highValue1 = 1.0E25d;
+            double highValue2 = 1.0E20d;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 highValue1, highValue2, highValue1, highValue2), 0.0d);
 
@@ -80,9 +79,9 @@ namespace Legion.Test
         public void TestFloatDeterminant3X3()
         {
             // Null result with low values
-            float lowValue1 = math.pow(10.0f, -15.0f);
-            float lowValue2 = math.pow(10.0f, -12.0f);
-            float lowValue3 = math.pow(10.0f, -10.0f);
+            float lowValue1 = 1.0E-15f;
+            float lowValue2 = 1.0E-12f;
+            float lowValue3 = 1.0E-10f;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 lowValue1, lowValue2, lowValue3,
                 lowValue1, lowValue2, lowValue3,
@@ -98,9 +97,9 @@ namespace Legion.Test
                 mediumValue1, mediumValue2, mediumValue3), 0.0f);
 
             // Null result with high values
-            float highValue1 = math.pow(10.0f, 15.0f);
-            float highValue2 = math.pow(10.0f, 12.0f);
-            float highValue3 = math.pow(10.0f, 10.0f);
+            float highValue1 = 1.0E15f;
+            float highValue2 = 1.0E12f;
+            float highValue3 = 1.0E10f;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 highValue1, highValue2, highValue3,
                 highValue1, highValue2, highValue3,
@@ -118,9 +117,9 @@ namespace Legion.Test
         public void TestDoubleDeterminant3X3()
         {
             // Null result with low values
-            double lowValue1 = math.pow(10.0d, -25.0d);
-            double lowValue2 = math.pow(10.0d, -20.0d);
-            double lowValue3 = math.pow(10.0d, -15.0d);
+            double lowValue1 = 1.0E-25d;
+            double lowValue2 = 1.0E-20d;
+            double lowValue3 = 1.0E-15d;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 lowValue1, lowValue2, lowValue3,
                 lowValue1, lowValue2, lowValue3,
@@ -136,9 +135,9 @@ namespace Legion.Test
                 mediumValue1, mediumValue2, mediumValue3), 0.0d); ;
 
             // Null result with high values
-            double highValue1 = math.pow(10.0d, 25.0d);
-            double highValue2 = math.pow(10.0d, 20.0d);
-            double highValue3 = math.pow(10.0d, 15.0d);
+            double highValue1 = 1.0E25d;
+            double highValue2 = 1.0E20d;
+            double highValue3 = 1.0E15d;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 highValue1, highValue2, highValue3,
                 highValue1, highValue2, highValue3,
@@ -156,10 +155,10 @@ namespace Legion.Test
         public void TestFloatDeterminant4X4()
         {
             // Null result with low values
-            float lowValue1 = math.pow(10.0f, -20.0f);
-            float lowValue2 = math.pow(10.0f, -15.0f);
-            float lowValue3 = math.pow(10.0f, -10.0f);
-            float lowValue4 = math.pow(10.0f, -5.0f);
+            float lowValue1 = 1.0E-20f;
+            float lowValue2 = 1.0E-15f;
+            float lowValue3 = 1.0E-10f;
+            float lowValue4 = 1.0E-5f;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 lowValue1, lowValue2, lowValue3, lowValue4,
                 lowValue1, lowValue2, lowValue3, lowValue4,
@@ -178,10 +177,10 @@ namespace Legion.Test
                 mediumValue1, mediumValue2, mediumValue3, mediumValue4), 0.0f);
 
             // Null result with high values
-            float highValue1 = math.pow(10.0f, 20.0f);
-            float highValue2 = math.pow(10.0f, 15.0f);
-            float highValue3 = math.pow(10.0f, 10.0f);
-            float highValue4 = math.pow(10.0f, 5.0f);
+            float highValue1 = 1.0E20f;
+            float highValue2 = 1.0E15f;
+            float highValue3 = 1.0E10f;
+            float highValue4 = 1.0E5f;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 highValue1, highValue2, highValue3, highValue4,
                 highValue1, highValue2, highValue3, highValue4,
@@ -194,17 +193,17 @@ namespace Legion.Test
                 0.0004598264f, 0.001272236f, -0.00006374379f, 0.0007484255f,
                 0.0007483774f, -0.00006352074f, 0.001271948f, 0.0004602892f,
                 -0.00006352074f, 0.0007483774f, 0.0004602892f, 0.001271948f),
-                1.75785579f * math.pow(10.0f, -18.0f));
+                1.75785579E-18f);
         }
 
         [Test]
         public void TestDoubleDeterminant4X4()
         {
             // Null result with low values
-            double lowValue1 = math.pow(10.0d, -25.0d);
-            double lowValue2 = math.pow(10.0d, -20.0d);
-            double lowValue3 = math.pow(10.0d, -15.0d);
-            double lowValue4 = math.pow(10.0d, -10.0d);
+            double lowValue1 = 1.0E-25d;
+            double lowValue2 = 1.0E-20d;
+            double lowValue3 = 1.0E-15d;
+            double lowValue4 = 1.0E-10d;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 lowValue1, lowValue2, lowValue3, lowValue4,
                 lowValue1, lowValue2, lowValue3, lowValue4,
@@ -223,10 +222,10 @@ namespace Legion.Test
                 mediumValue1, mediumValue2, mediumValue3, mediumValue4), 0.0d);
 
             // Null result with high values
-            double highValue1 = math.pow(10.0d, 25.0d);
-            double highValue2 = math.pow(10.0d, 20.0d);
-            double highValue3 = math.pow(10.0d, 15.0d);
-            double highValue4 = math.pow(10.0d, 10.0d);
+            double highValue1 = 1.0E-25d;
+            double highValue2 = 1.0E20d;
+            double highValue3 = 1.0E15d;
+            double highValue4 = 1.0E10d;
             Assert.AreEqual(Mathematics.Determinant.Compute(
                 highValue1, highValue2, highValue3, highValue4,
                 highValue1, highValue2, highValue3, highValue4,
@@ -239,7 +238,7 @@ namespace Legion.Test
                 0.0004598264d, 0.001272236d, -0.00006374379d, 0.0007484255d,
                 0.0007483774d, -0.00006352074d, 0.001271948d, 0.0004602892d,
                 -0.00006352074d, 0.0007483774d, 0.0004602892d, 0.001271948d),
-                1.6837286049765792d * math.pow(10.0d, -18.0d));
+                1.6837286049765792E-18d);
         }
     }
 }
