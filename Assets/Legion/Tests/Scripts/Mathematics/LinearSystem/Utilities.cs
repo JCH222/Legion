@@ -1,9 +1,8 @@
 namespace Legion.Test
 {
     using NUnit.Framework;
-    using Unity.Mathematics;
 
-    public class Utilities
+    public partial class Utilities
     {
         [Test]
         public void TestCheckIsSolvable()
