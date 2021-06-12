@@ -5,6 +5,7 @@ namespace Legion.Physics
 
 	public struct Utilities
 	{
+		#region Static Methods
 		/// <summary>
 		/// Compute linear and tangential velocities of impulse from input position to ouput position 
 		/// </summary>
@@ -27,5 +28,6 @@ namespace Legion.Physics
 			tangentialVelocity = math.cross(angularVelocity, distanceOut);
 			linearVelocity = impulse * invMass;
 		}
+		#endregion Static Methods
 	}
 }

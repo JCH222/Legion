@@ -10,6 +10,7 @@ namespace Legion.Test
 		{
 			Physics.VelocityConstraint constraint = new Physics.VelocityConstraint()
 			{
+				IsActive = true,
 				LocalDirection = math.forward(),
 				LocalDistance = float3.zero,
 				Bias = 0.0f
@@ -27,12 +28,14 @@ namespace Legion.Test
 		{
 			Physics.VelocityConstraint constraintA = new Physics.VelocityConstraint()
 			{
+				IsActive = true,
 				LocalDirection = math.right(),
 				LocalDistance = math.forward(),
 				Bias = 0.0f
 			};
 			Physics.VelocityConstraint constraintB = new Physics.VelocityConstraint()
 			{
+				IsActive = true,
 				LocalDirection = math.right(),
 				LocalDistance = 2.0f * math.back(),
 				Bias = 0.0f

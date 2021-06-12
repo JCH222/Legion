@@ -9,6 +9,7 @@ namespace Legion.Physics
 	public struct VelocityConstraint
 	{
 		#region Fields
+		public bool IsActive; // Constraint activation trigger
 		public float3 LocalDirection; // Direction of the contraint in the local world [m]
 		public float3 LocalDistance; // Distance of the contraint from the center of mass in the local world [m]
 		public float Bias; // Additional speed of the constraint [m.s^-1]
