@@ -14,16 +14,16 @@ namespace Legion.Mathematics.LinearSystem
 		/// Solve a dimension 1 linear system :
 		/// | a00 * variableA = result0
 		/// </summary>
-		/// <param name="a00">Coefficients matrix value (row 0 / column 0)</param>
+		/// <param name="a00">Coefficient matrix value (row 0 / column 0)</param>
 		/// <param name="result0">First equation value</param>
 		/// <param name="variableA">Variable matrix value (row 0)</param>
-		/// <param name="errorA">Abosulte error of variableA</param>
+		/// <param name="residual1">Abosulte error of the first equation</param>
 		/// <param name="solvingType">Solving method</param>
 		/// <param name="epsilon">Null value range (>= 0)/param>
 		/// <returns>Solving status</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SolvingStatus Solve(
-			float a00, float result0, out float variableA, out float errorA, 
+			float a00, float result0, out float variableA, out float residual1, 
 			GlobalSolvingType solvingType = GlobalSolvingType.CRAMER, float epsilon = 0.0f)
 		{
 			if (solvingType == GlobalSolvingType.CRAMER)
@@ -35,12 +35,12 @@ namespace Legion.Mathematics.LinearSystem
 				if (status == SolvingStatus.VALID)
 				{
 					variableA = numeratorA / denominator;
-					errorA = 0.0f;
+					residual1 = 0.0f;
 				}
 				else
 				{
 					variableA = float.NaN;
-					errorA = float.NaN;
+					residual1 = float.NaN;
 				}
 
 				return status;
@@ -48,7 +48,7 @@ namespace Legion.Mathematics.LinearSystem
 			else
 			{
 				variableA = float.NaN;
-				errorA = float.NaN;
+				residual1 = float.NaN;
 
 				return SolvingStatus.UNKNOWN;
 			}
@@ -58,16 +58,16 @@ namespace Legion.Mathematics.LinearSystem
 		/// Solve a dimension 1 linear system :
 		/// | a00 * variableA = result0
 		/// </summary>
-		/// <param name="a00">Coefficients matrix value (row 0 / column 0)</param>
+		/// <param name="a00">Coefficient matrix value (row 0 / column 0)</param>
 		/// <param name="result0">First equation value</param>
 		/// <param name="variableA">Variable matrix value (row 0)</param>
-		/// <param name="errorA">Abosulte error of variableA</param>
+		/// <param name="residual1">Abosulte error of the first equation</param>
 		/// <param name="solvingType">Solving method</param>
 		/// <param name="epsilon">Null value range (>= 0)/param>
 		/// <returns>Solving status</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static SolvingStatus Solve(
-			double a00, double result0, out double variableA, out double errorA,
+			double a00, double result0, out double variableA, out double residual1,
 			GlobalSolvingType solvingType = GlobalSolvingType.CRAMER, double epsilon = 0.0d)
 		{
 			if (solvingType == GlobalSolvingType.CRAMER)
@@ -79,12 +79,12 @@ namespace Legion.Mathematics.LinearSystem
 				if (status == SolvingStatus.VALID)
 				{
 					variableA = numeratorA / denominator;
-					errorA = 0.0f;
+					residual1 = 0.0f;
 				}
 				else
 				{
 					variableA = double.NaN;
-					errorA = double.NaN;
+					residual1 = double.NaN;
 				}
 
 				return status;
@@ -92,27 +92,27 @@ namespace Legion.Mathematics.LinearSystem
 			else
 			{
 				variableA = double.NaN;
-				errorA = double.NaN;
+				residual1 = double.NaN;
 
 				return SolvingStatus.UNKNOWN;
 			}
 		}
 
 		/// <summary>
-		/// Solve a dimension 1 linear system :
+		/// Solve a dimension 2 linear system :
 		/// | a00 * variableA + a01 * variableB = result0
 		/// | a10 * variableA + a11 * variableB = result1
 		/// </summary>
-		/// <param name="a00">Coefficients matrix value (row 0 / column 0)</param>
-		/// <param name="a01">Coefficients matrix value (row 0 / column 1)</param>
+		/// <param name="a00">Coefficient matrix value (row 0 / column 0)</param>
+		/// <param name="a01">Coefficient matrix value (row 0 / column 1)</param>
 		/// <param name="result0">First equation value</param>
-		/// <param name="a10">Coefficients matrix value (row 1 / column 0)</param>
-		/// <param name="a11">Coefficients matrix value (row 1 / column 1)</param>
+		/// <param name="a10">Coefficient matrix value (row 1 / column 0)</param>
+		/// <param name="a11">Coefficient matrix value (row 1 / column 1)</param>
 		/// <param name="result1">Second equation value</param>
 		/// <param name="variableA">Variable matrix value (column 0)</param>
-		/// <param name="errorA">Abosulte error of variableA</param>
+		/// <param name="residual1">Abosulte error of the first equation</param>
 		/// <param name="variableB">Variable matrix value (column 1)</param>
-		/// <param name="errorB">Abosulte error of variableB</param>
+		/// <param name="residual2">Abosulte error of the second equation</param>
 		/// <param name="solvingType">Solving method</param>
 		/// <param name="epsilon">Null value range (>= 0)/param>
 		/// <returns>Solving status</returns>
@@ -120,8 +120,8 @@ namespace Legion.Mathematics.LinearSystem
 		public static SolvingStatus Solve(
 			float a00, float a01, float result0,
 			float a10, float a11, float result1,
-			out float variableA, out float errorA,
-			out float variableB, out float errorB,
+			out float variableA, out float residual1,
+			out float variableB, out float residual2,
 			GlobalSolvingType solvingType = GlobalSolvingType.CRAMER, 
 			float epsilon = 0.0f)
 		{
@@ -135,16 +135,16 @@ namespace Legion.Mathematics.LinearSystem
 				if (status == SolvingStatus.VALID)
 				{
 					variableA = numeratorA / denominator;
-					errorA = 0.0f;
+					residual1 = 0.0f;
 					variableB = numeratorB / denominator;
-					errorB = 0.0f;
+					residual2 = 0.0f;
 				}
 				else
 				{
 					variableA = float.NaN;
-					errorA = float.NaN;
+					residual1 = float.NaN;
 					variableB = float.NaN;
-					errorB = float.NaN;
+					residual2 = float.NaN;
 				}
 
 				return status;
@@ -152,29 +152,29 @@ namespace Legion.Mathematics.LinearSystem
 			else
 			{
 				variableA = float.NaN;
-				errorA = float.NaN;
+				residual1 = float.NaN;
 				variableB = float.NaN;
-				errorB = float.NaN;
+				residual2 = float.NaN;
 
 				return SolvingStatus.UNKNOWN;
 			}
 		}
 
 		/// <summary>
-		/// Solve a dimension 1 linear system :
+		/// Solve a dimension 2 linear system :
 		/// | a00 * variableA + a01 * variableB = result0
 		/// | a10 * variableA + a11 * variableB = result1
 		/// </summary>
-		/// <param name="a00">Coefficients matrix value (row 0 / column 0)</param>
-		/// <param name="a01">Coefficients matrix value (row 0 / column 1)</param>
+		/// <param name="a00">Coefficient matrix value (row 0 / column 0)</param>
+		/// <param name="a01">Coefficient matrix value (row 0 / column 1)</param>
 		/// <param name="result0">First equation value</param>
-		/// <param name="a10">Coefficients matrix value (row 1 / column 0)</param>
-		/// <param name="a11">Coefficients matrix value (row 1 / column 1)</param>
+		/// <param name="a10">Coefficient matrix value (row 1 / column 0)</param>
+		/// <param name="a11">Coefficient matrix value (row 1 / column 1)</param>
 		/// <param name="result1">Second equation value</param>
 		/// <param name="variableA">Variable matrix value (column 0)</param>
-		/// <param name="errorA">Abosulte error of variableA</param>
+		/// <param name="residual1">Abosulte error of the first equation</param>
 		/// <param name="variableB">Variable matrix value (column 1)</param>
-		/// <param name="errorB">Abosulte error of variableB</param>
+		/// <param name="residual2">Abosulte error of the second equation</param>
 		/// <param name="solvingType">Solving method</param>
 		/// <param name="epsilon">Null value range (>= 0)/param>
 		/// <returns>Solving status</returns>
@@ -182,8 +182,8 @@ namespace Legion.Mathematics.LinearSystem
 		public static SolvingStatus Solve(
 			double a00, double a01, double result0,
 			double a10, double a11, double result1,
-			out double variableA, out double errorA,
-			out double variableB, out double errorB,
+			out double variableA, out double residual1,
+			out double variableB, out double residual2,
 			GlobalSolvingType solvingType = GlobalSolvingType.CRAMER,
 			double epsilon = 0.0d)
 		{
@@ -197,16 +197,16 @@ namespace Legion.Mathematics.LinearSystem
 				if (status == SolvingStatus.VALID)
 				{
 					variableA = numeratorA / denominator;
-					errorA = 0.0d;
+					residual1 = 0.0d;
 					variableB = numeratorB / denominator;
-					errorB = 0.0d;
+					residual2 = 0.0d;
 				}
 				else
 				{
 					variableA = float.NaN;
-					errorA = float.NaN;
+					residual1 = float.NaN;
 					variableB = float.NaN;
-					errorB = float.NaN;
+					residual2 = float.NaN;
 				}
 
 				return status;
@@ -214,9 +214,9 @@ namespace Legion.Mathematics.LinearSystem
 			else
 			{
 				variableA = float.NaN;
-				errorA = float.NaN;
+				residual1 = float.NaN;
 				variableB = float.NaN;
-				errorB = float.NaN;
+				residual2 = float.NaN;
 
 				return SolvingStatus.UNKNOWN;
 			}

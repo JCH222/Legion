@@ -1,8 +1,9 @@
 namespace Legion.Test
 {
     using NUnit.Framework;
+	using Unity.Collections;
 
-    public partial class Utilities
+	public partial class Utilities
     {
         [Test]
         public void TestCheckIsSolvable()
@@ -232,6 +233,88 @@ namespace Legion.Test
             Assert.AreEqual(0.0d, dNumeratorC);
             Assert.AreEqual(0.0d, dNumeratorD);
             #endregion Double Dimension 4
+        }
+
+        [Test]
+        public void TestIsDiagonallyDominant()
+		{
+            NativeArray<float> fCoefficients = new NativeArray<float>(9, Allocator.Persistent);
+            fCoefficients[0] = 3.0f;
+            fCoefficients[1] = -2.0f;
+            fCoefficients[2] = 1.0f;
+            fCoefficients[3] = 1.0f;
+            fCoefficients[4] = -3.0f;
+            fCoefficients[5] = 2.0f;
+            fCoefficients[6] = -1.0f;
+            fCoefficients[7] = 2.0f;
+            fCoefficients[8] = 4.0f;
+            bool isDiagonallyDominant = Mathematics.LinearSystem.Utilities.CheckIsDiagonallyDominant(3, in fCoefficients);
+            Assert.AreEqual(true, isDiagonallyDominant);
+
+            fCoefficients[0] = -2.0f;
+            fCoefficients[1] = 2.0f;
+            fCoefficients[2] = 1.0f;
+            fCoefficients[3] = 1.0f;
+            fCoefficients[4] = 3.0f;
+            fCoefficients[5] = 2.0f;
+            fCoefficients[6] = 1.0f;
+            fCoefficients[7] = -2.0f;
+            fCoefficients[8] = 0.0f;
+            isDiagonallyDominant = Mathematics.LinearSystem.Utilities.CheckIsDiagonallyDominant(3, in fCoefficients);
+            Assert.AreEqual(false, isDiagonallyDominant);
+
+            fCoefficients[0] = -4.0f;
+            fCoefficients[1] = 2.0f;
+            fCoefficients[2] = 1.0f;
+            fCoefficients[3] = 1.0f;
+            fCoefficients[4] = 6.0f;
+            fCoefficients[5] = 2.0f;
+            fCoefficients[6] = 1.0f;
+            fCoefficients[7] = -2.0f;
+            fCoefficients[8] = 5.0f;
+            isDiagonallyDominant = Mathematics.LinearSystem.Utilities.CheckIsDiagonallyDominant(3, in fCoefficients);
+            Assert.AreEqual(true, isDiagonallyDominant);
+
+            fCoefficients.Dispose();
+
+            NativeArray<double> dCoefficients = new NativeArray<double>(9, Allocator.Persistent);
+            dCoefficients[0] = 3.0d;
+            dCoefficients[1] = -2.0d;
+            dCoefficients[2] = 1.0d;
+            dCoefficients[3] = 1.0d;
+            dCoefficients[4] = -3.0d;
+            dCoefficients[5] = 2.0d;
+            dCoefficients[6] = -1.0d;
+            dCoefficients[7] = 2.0d;
+            dCoefficients[8] = 4.0d;
+            isDiagonallyDominant = Mathematics.LinearSystem.Utilities.CheckIsDiagonallyDominant(3, in dCoefficients);
+            Assert.AreEqual(true, isDiagonallyDominant);
+
+            dCoefficients[0] = -2.0d;
+            dCoefficients[1] = 2.0d;
+            dCoefficients[2] = 1.0d;
+            dCoefficients[3] = 1.0d;
+            dCoefficients[4] = 3.0d;
+            dCoefficients[5] = 2.0d;
+            dCoefficients[6] = 1.0d;
+            dCoefficients[7] = -2.0d;
+            dCoefficients[8] = 0.0d;
+            isDiagonallyDominant = Mathematics.LinearSystem.Utilities.CheckIsDiagonallyDominant(3, in dCoefficients);
+            Assert.AreEqual(false, isDiagonallyDominant);
+
+            dCoefficients[0] = -4.0d;
+            dCoefficients[1] = 2.0d;
+            dCoefficients[2] = 1.0d;
+            dCoefficients[3] = 1.0d;
+            dCoefficients[4] = 6.0d;
+            dCoefficients[5] = 2.0d;
+            dCoefficients[6] = 1.0d;
+            dCoefficients[7] = -2.0d;
+            dCoefficients[8] = 5.0d;
+            isDiagonallyDominant = Mathematics.LinearSystem.Utilities.CheckIsDiagonallyDominant(3, in dCoefficients);
+            Assert.AreEqual(true, isDiagonallyDominant);
+
+            dCoefficients.Dispose();
         }
     }
 }

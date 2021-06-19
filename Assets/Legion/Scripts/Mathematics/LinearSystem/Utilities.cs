@@ -1,6 +1,7 @@
 namespace Legion.Mathematics.LinearSystem
 {
 	using System.Runtime.CompilerServices;
+	using Unity.Collections;
 	using Unity.Mathematics;
 
 	/// <summary>
@@ -404,6 +405,76 @@ namespace Legion.Mathematics.LinearSystem
 			{
 				return SolvingStatus.UNKNOWN;
 			}
+		}
+
+		/// <summary>
+		/// Check if the square matrix is diagonally dominant.
+		/// </summary>
+		/// <param name="dimension">Sqare matrix dimension</param>
+		/// <param name="coefficients">Coefficients of the sqare matrix (row by row)</param>
+		/// <returns>Is the matrix diagonally dominant</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool CheckIsDiagonallyDominant(int dimension, in NativeArray<float> coefficients)
+		{
+			for (int i = 0; i < dimension; i++)
+			{
+				float coefficient = float.NaN;
+				float sum = 0.0f;
+
+				for (int j = 0; j < dimension; j++)
+				{
+					if (i != j)
+					{
+						sum += math.abs(coefficients[i * dimension + j]);
+					}
+					else
+					{
+						coefficient = math.abs(coefficients[i * dimension + j]);
+					}
+				}
+
+				if (coefficient < sum)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		/// <summary>
+		/// Check if the square matrix is diagonally dominant.
+		/// </summary>
+		/// <param name="dimension">Sqare matrix dimension</param>
+		/// <param name="coefficients">Coefficients of the sqare matrix (row by row)</param>
+		/// <returns>Is the matrix diagonally dominant</returns>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static bool CheckIsDiagonallyDominant(int dimension, in NativeArray<double> coefficients)
+		{
+			for (int i = 0; i < dimension; i++)
+			{
+				double coefficient = double.NaN;
+				double sum = 0.0f;
+
+				for (int j = 0; j < dimension; j++)
+				{
+					if (i != j)
+					{
+						sum += math.abs(coefficients[i * dimension + j]);
+					}
+					else
+					{
+						coefficient = math.abs(coefficients[i * dimension + j]);
+					}
+				}
+
+				if (coefficient < sum)
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 		#endregion Static Methods
 	}
