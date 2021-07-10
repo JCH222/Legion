@@ -2,6 +2,7 @@
     "name": "Legion.Physics",
     "rootNamespace": "",
     "references": [
+        "GUID:456799f9c0f8d2742aa8661feed781d9",
         "GUID:d8b63aba1907145bea998dd612889d6b"
     ],
     "includePlatforms": [],
