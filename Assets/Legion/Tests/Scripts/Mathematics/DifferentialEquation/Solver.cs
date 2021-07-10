@@ -14,8 +14,8 @@ namespace Legion.Test
         private static readonly float gravity = 9.81f;
         private static readonly float length = 9.81f;
         private static readonly string dataExportFolderPath = Application.persistentDataPath + "/Test/DifferentialEquation/Solver/";
-        private static readonly string dataExportHeaderLine1 = "Time (s); Speed (m/s)";
-        private static readonly string dataExportHeaderLine2 = "Time (s); Position (rad)";
+        private static readonly string dataExportHeaderLine1 = "Time (s);Speed (m/s)";
+        private static readonly string dataExportHeaderLine2 = "Time (s);Position (rad)";
 
         private float FreeFallAcceleration(float currentSpeed)
 		{

@@ -1,6 +1,7 @@
 namespace Legion.Test
 {
-    using NUnit.Framework;
+	using Legion.Mathematics;
+	using NUnit.Framework;
 	using Unity.Collections;
 
 	public partial class Utilities
@@ -9,19 +10,19 @@ namespace Legion.Test
         public void TestCheckIsSolvable()
         {
 			#region Float Dimension 1
-			Mathematics.LinearSystem.SolvingStatus status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(
+			SolvingStatus status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(
                 0.5f, -10.0f, out float fDenominator, out float fNumeratorA, 0.0f);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.VALID, status);
+            Assert.AreEqual(SolvingStatus.VALID, status);
             Assert.AreEqual(0.5f, fDenominator);
             Assert.AreEqual(-10.0f, fNumeratorA);
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(0.5f, -10.0f, out fDenominator, out fNumeratorA, 1.0f);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INCOMPATIBLE, status);
+            Assert.AreEqual(SolvingStatus.INCOMPATIBLE, status);
             Assert.AreEqual(0.5f, fDenominator);
             Assert.AreEqual(-10.0f, fNumeratorA);
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(0.5f, -10.0f, out fDenominator, out fNumeratorA, 30.0f);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INDETERMINATE, status);
+            Assert.AreEqual(SolvingStatus.INDETERMINATE, status);
             Assert.AreEqual(0.5f, fDenominator);
             Assert.AreEqual(-10.0f, fNumeratorA);
             #endregion Float Dimension 1
@@ -29,17 +30,17 @@ namespace Legion.Test
             #region Double Dimension 1
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(
                 0.5d, -10.0d, out double dDenominator, out double dNumeratorA, 0.0d);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.VALID, status);
+            Assert.AreEqual(SolvingStatus.VALID, status);
             Assert.AreEqual(0.5d, dDenominator);
             Assert.AreEqual(-10.0d, dNumeratorA);
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(0.5d, -10.0d, out dDenominator, out dNumeratorA, 1.0d);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INCOMPATIBLE, status);
+            Assert.AreEqual(SolvingStatus.INCOMPATIBLE, status);
             Assert.AreEqual(0.5d, dDenominator);
             Assert.AreEqual(-10.0d, dNumeratorA);
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(0.5d, -10.0d, out dDenominator, out dNumeratorA, 30.0d);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INDETERMINATE, status);
+            Assert.AreEqual(SolvingStatus.INDETERMINATE, status);
             Assert.AreEqual(0.5d, dDenominator);
             Assert.AreEqual(-10.0d, dNumeratorA);
             #endregion Double Dimension 1
@@ -47,21 +48,21 @@ namespace Legion.Test
             #region Float Dimension 2
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5f, -45.0f, 10.0f, -45.0f, 50.5f, 10.0f, 
                 out fDenominator, out fNumeratorA, out float fNumeratorB, 0.0f);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.VALID, status);
+            Assert.AreEqual(SolvingStatus.VALID, status);
             Assert.AreEqual(525.25f, fDenominator);
             Assert.AreEqual(955.0f, fNumeratorA);
             Assert.AreEqual(955.0f, fNumeratorB);
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(2.5f, 2.5f, 10.0f, 2.5f, 2.5f, -10.0f,
                 out fDenominator, out fNumeratorA, out fNumeratorB, 0.0f);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INCOMPATIBLE, status);
+            Assert.AreEqual(SolvingStatus.INCOMPATIBLE, status);
             Assert.AreEqual(0.0f, fDenominator);
             Assert.AreEqual(50.0f, fNumeratorA);
             Assert.AreEqual(-50.0f, fNumeratorB);
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5f, 50.5f, 10.0f, 50.5f, 50.5f, 10.0f,
                 out fDenominator, out fNumeratorA, out fNumeratorB, 0.0f);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INDETERMINATE, status);
+            Assert.AreEqual(SolvingStatus.INDETERMINATE, status);
             Assert.AreEqual(0.0f, fDenominator);
             Assert.AreEqual(0.0f, fNumeratorA);
             Assert.AreEqual(0.0f, fNumeratorB);
@@ -70,21 +71,21 @@ namespace Legion.Test
             #region Double Dimension 2
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5d, -45.0d, 10.0d, -45.0d, 50.5d, 10.0d,
                 out dDenominator, out dNumeratorA, out double dNumeratorB, 0.0d);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.VALID, status);
+            Assert.AreEqual(SolvingStatus.VALID, status);
             Assert.AreEqual(525.25d, dDenominator);
             Assert.AreEqual(955.0d, dNumeratorA);
             Assert.AreEqual(955.0d, dNumeratorB);
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(2.5d, 2.5d, 10.0d, 2.5d, 2.5d, -10.0d,
                 out dDenominator, out dNumeratorA, out dNumeratorB, 0.0d);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INCOMPATIBLE, status);
+            Assert.AreEqual(SolvingStatus.INCOMPATIBLE, status);
             Assert.AreEqual(0.0d, dDenominator);
             Assert.AreEqual(50.0d, dNumeratorA);
             Assert.AreEqual(-50.0d, dNumeratorB);
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5d, 50.5d, 10.0d, 50.5d, 50.5d, 10.0d,
                 out dDenominator, out dNumeratorA, out dNumeratorB, 0.0d);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INDETERMINATE, status);
+            Assert.AreEqual(SolvingStatus.INDETERMINATE, status);
             Assert.AreEqual(0.0d, dDenominator);
             Assert.AreEqual(0.0d, dNumeratorA);
             Assert.AreEqual(0.0d, dNumeratorB);
@@ -93,7 +94,7 @@ namespace Legion.Test
             #region Float Dimension 3
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5f, -45.5f, 0.5f, 10.0f, -45.5f, 50.5f, 0.5f, 
                 10.0f, 0.5f, 0.5f, 50.5f, 100.0f, out fDenominator, out fNumeratorA, out fNumeratorB, out float fNumeratorC);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.VALID, status);
+            Assert.AreEqual(SolvingStatus.VALID, status);
             Assert.AreEqual(24192.0f, fDenominator);
             Assert.AreEqual(43680.0f, fNumeratorA);
             Assert.AreEqual(43680.0f, fNumeratorB);
@@ -101,7 +102,7 @@ namespace Legion.Test
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5f, 50.5f, 0.5f, 10.0f, 50.5f, 50.5f, 0.5f,
                 -10.0f, 0.5f, 0.5f, 50.5f, 0.0f, out fDenominator, out fNumeratorA, out fNumeratorB, out fNumeratorC);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INCOMPATIBLE, status);
+            Assert.AreEqual(SolvingStatus.INCOMPATIBLE, status);
             Assert.AreEqual(0.0f, fDenominator);
             Assert.AreEqual(51000.0f, fNumeratorA);
             Assert.AreEqual(-51000.0f, fNumeratorB);
@@ -109,7 +110,7 @@ namespace Legion.Test
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5f, 50.5f, 0.5f, 10.0f, 50.5f, 50.5f, 0.5f,
                 10.0f, 0.5f, 0.5f, 50.5f, 10.0f, out fDenominator, out fNumeratorA, out fNumeratorB, out fNumeratorC);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.UNKNOWN, status);
+            Assert.AreEqual(SolvingStatus.UNKNOWN, status);
             Assert.AreEqual(0.0f, fDenominator);
             Assert.AreEqual(0.0f, fNumeratorA);
             Assert.AreEqual(0.0f, fNumeratorB);
@@ -119,7 +120,7 @@ namespace Legion.Test
             #region Double Dimension 3
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5d, -45.5d, 0.5d, 10.0d, -45.5d, 50.5d, 0.5d,
                 10.0d, 0.5d, 0.5d, 50.5d, 100.0d, out dDenominator, out dNumeratorA, out dNumeratorB, out double dNumeratorC);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.VALID, status);
+            Assert.AreEqual(SolvingStatus.VALID, status);
             Assert.AreEqual(24192.0d, dDenominator);
             Assert.AreEqual(43680.0d, dNumeratorA);
             Assert.AreEqual(43680.0d, dNumeratorB);
@@ -127,7 +128,7 @@ namespace Legion.Test
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5d, 50.5d, 0.5d, 10.0d, 50.5d, 50.5d, 0.5d,
                 -10.0d, 0.5d, 0.5d, 50.5d, 0.0d, out dDenominator, out dNumeratorA, out dNumeratorB, out dNumeratorC);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INCOMPATIBLE, status);
+            Assert.AreEqual(SolvingStatus.INCOMPATIBLE, status);
             Assert.AreEqual(0.0d, dDenominator);
             Assert.AreEqual(51000.0d, dNumeratorA);
             Assert.AreEqual(-51000.0d, dNumeratorB);
@@ -135,7 +136,7 @@ namespace Legion.Test
 
             status = Mathematics.LinearSystem.Utilities.CheckIsSolvable(50.5d, 50.5d, 0.5d, 10.0d, 50.5d, 50.5d, 0.5d,
                 10.0d, 0.5d, 0.5d, 50.5d, 10.0d, out dDenominator, out dNumeratorA, out dNumeratorB, out dNumeratorC);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.UNKNOWN, status);
+            Assert.AreEqual(SolvingStatus.UNKNOWN, status);
             Assert.AreEqual(0.0d, dDenominator);
             Assert.AreEqual(0.0d, dNumeratorA);
             Assert.AreEqual(0.0d, dNumeratorB);
@@ -150,7 +151,7 @@ namespace Legion.Test
                 -0.00006352074f, 0.0007483774f, 0.0004602892f, 0.001271948f, 25.0f,
                 out fDenominator, out fNumeratorA, out fNumeratorB, out fNumeratorC, 
                 out float fNumeratorD);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.VALID, status);
+            Assert.AreEqual(SolvingStatus.VALID, status);
             Assert.AreEqual(1.75785579E-18f, fDenominator);
             Assert.AreEqual(1.80505787E-14f, fNumeratorA);
             Assert.AreEqual(1.79730481E-14f, fNumeratorB);
@@ -165,7 +166,7 @@ namespace Legion.Test
                 out fDenominator, out fNumeratorA,
                 out fNumeratorB, out fNumeratorC,
                 out fNumeratorD);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INCOMPATIBLE, status);
+            Assert.AreEqual(SolvingStatus.INCOMPATIBLE, status);
             Assert.AreEqual(0.0f, fDenominator);
             Assert.AreEqual(100000.0f, fNumeratorA);
             Assert.AreEqual(100000.0f, fNumeratorB);
@@ -180,7 +181,7 @@ namespace Legion.Test
                 out fDenominator, out fNumeratorA, 
                 out fNumeratorB, out fNumeratorC,
                 out fNumeratorD);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.UNKNOWN, status);
+            Assert.AreEqual(SolvingStatus.UNKNOWN, status);
             Assert.AreEqual(0.0f, fDenominator);
             Assert.AreEqual(0.0f, fNumeratorA);
             Assert.AreEqual(0.0f, fNumeratorB);
@@ -196,7 +197,7 @@ namespace Legion.Test
                 -0.00006352074d, 0.0007483774d, 0.0004602892d, 0.001271948d, 25.0d,
                 out dDenominator, out dNumeratorA, out dNumeratorB, out dNumeratorC,
                 out double dNumeratorD);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.VALID, status);
+            Assert.AreEqual(SolvingStatus.VALID, status);
             Assert.AreEqual(1.6837286049765792E-18d, dDenominator);
             Assert.AreEqual(1.7418971607713834E-14d, dNumeratorA);
             Assert.AreEqual(1.7418971610857615E-14d, dNumeratorB);
@@ -211,7 +212,7 @@ namespace Legion.Test
                 out dDenominator, out dNumeratorA,
                 out dNumeratorB, out dNumeratorC,
                 out dNumeratorD);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.INCOMPATIBLE, status);
+            Assert.AreEqual(SolvingStatus.INCOMPATIBLE, status);
             Assert.AreEqual(0.0f, dDenominator);
             Assert.AreEqual(100000.0d, dNumeratorA);
             Assert.AreEqual(100000.0d, dNumeratorB);
@@ -226,7 +227,7 @@ namespace Legion.Test
                 out dDenominator, out dNumeratorA,
                 out dNumeratorB, out dNumeratorC,
                 out dNumeratorD);
-            Assert.AreEqual(Mathematics.LinearSystem.SolvingStatus.UNKNOWN, status);
+            Assert.AreEqual(SolvingStatus.UNKNOWN, status);
             Assert.AreEqual(0.0d, dDenominator);
             Assert.AreEqual(0.0d, dNumeratorA);
             Assert.AreEqual(0.0d, dNumeratorB);

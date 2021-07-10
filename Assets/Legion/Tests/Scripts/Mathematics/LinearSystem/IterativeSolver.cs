@@ -1,6 +1,7 @@
 namespace Legion.Test
 {
-    using Legion.Mathematics.LinearSystem;
+	using Legion.Mathematics;
+	using Legion.Mathematics.LinearSystem;
     using NUnit.Framework;
     using Unity.Collections;
 
