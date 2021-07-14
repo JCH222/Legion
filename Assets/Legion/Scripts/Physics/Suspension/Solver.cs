@@ -16,14 +16,16 @@ namespace Legion.Physics.Suspension
 		/// <param name="timeStep">Time Step of the simulation [s]</param>
 		/// <param name="initialLength">Initial length of the suspension [m]</param>
 		/// <param name="initialSpeed">Initial speed of the suspension [m.s^-1]</param>
+		/// <param name="impulse">Generated impulse [kg.m.s^-1] for the next time step</param>
 		/// <returns>Length [m] and speed [m.s^-1] of the suspension for the next time step</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float2 SimulateWithExplicitEuler(in Spring spring, in Damper damper, 
-			float inverseMass, float timeStep, float initialLength, float initialSpeed)
+			float inverseMass, float timeStep, float initialLength, float initialSpeed, out float impulse)
 		{
 			float springImpulse = spring.ComputeImpulse(initialLength, timeStep);
 			float damperImpulse = damper.ComputeImpulse(initialSpeed, timeStep);
-			float initialAcceleration = (springImpulse + damperImpulse) * inverseMass / timeStep;
+			impulse = springImpulse + damperImpulse;
+			float initialAcceleration = impulse * inverseMass / timeStep;
 
 			float2 variable = new float2(initialLength, initialSpeed);
 			float2 derivative = new float2(initialSpeed, initialAcceleration);
@@ -40,14 +42,17 @@ namespace Legion.Physics.Suspension
 		/// <param name="timeStep">Time Step of the simulation [s]</param>
 		/// <param name="initialLength">Initial length of the suspension [m]</param>
 		/// <param name="initialSpeed">Initial speed of the suspension [m.s^-1]</param>
+		/// <param name="impulse">Generated impulse [kg.m.s^-1] for the next time step</param>
 		/// <returns>Length [m] and speed [m.s^-1] of the suspension for the next time step</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public static float2 SimulateWithExplicitRungeKutta2(in Spring spring, in Damper damper,
-			float inverseMass, float timeStep, float initialLength, float initialSpeed)
+			float inverseMass, float timeStep, float initialLength, float initialSpeed, out float impulse)
 		{
 			float springImpulse = spring.ComputeImpulse(initialLength, timeStep);
 			float damperImpulse = damper.ComputeImpulse(initialSpeed, timeStep);
-			float initialAcceleration = (springImpulse + damperImpulse) * inverseMass / timeStep;
+
+			impulse = springImpulse + damperImpulse;
+			float initialAcceleration = impulse * inverseMass / timeStep;
 
 			float2 variable = new float2(initialLength, initialSpeed);
 			float2 derivative = new float2(initialSpeed, initialAcceleration);
