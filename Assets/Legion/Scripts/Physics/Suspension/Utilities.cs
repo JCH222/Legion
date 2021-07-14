@@ -6,7 +6,7 @@ namespace Legion.Physics.Suspension
 	using Unity.Mathematics;
 
 	/// <summary>
-	/// 
+	/// Differential equation solving type.
 	/// </summary>
 	public enum SolvingType
 	{
