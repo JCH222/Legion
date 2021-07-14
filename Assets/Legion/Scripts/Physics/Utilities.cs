@@ -1,6 +1,7 @@
 namespace Legion.Physics
 {
 	using System.Runtime.CompilerServices;
+	using Unity.Collections;
 	using Unity.Mathematics;
 
 	public struct Utilities
@@ -27,6 +28,29 @@ namespace Legion.Physics
 			float3 angularVelocity = angularImpulse * invInertiaTensor;
 			tangentialVelocity = math.cross(angularVelocity, distanceOut);
 			linearVelocity = impulse * invMass;
+		}
+
+		/// <summary>
+		/// Compute global linear and angular impulses from several impulses.
+		/// </summary>
+		/// <param name="impulses">Applied impulses [kg.m.s^-1]</param>
+		/// <param name="distances">Distances from the center of mass to the impulses application [m]</param>
+		/// <param name="linearImpulse">Global linear impulse [kg.m.s^-1]</param>
+		/// <param name="angularImpulse">Global angular impulse [kg.m^2.s^-1]</param>
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		public static void MergeImpulses(in NativeArray<float3> impulses, 
+			in NativeArray<float3> distances, out float3 linearImpulse, 
+			out float3 angularImpulse)
+		{
+			linearImpulse = 0.0f;
+			angularImpulse = 0.0f;
+
+			for (int i = 0, length = impulses.Length; i < length; i++)
+			{
+				float3 impulse = impulses[i];
+				linearImpulse += impulse;
+				angularImpulse += math.cross(distances[i], impulse);
+			}
 		}
 		#endregion Static Methods
 	}
