@@ -3,6 +3,7 @@ namespace Legion.Physics.Suspension.Parts
 	/// <summary>
 	/// Energy-dissipating suspension part.
 	/// </summary>
+	[System.Serializable]
 	public struct Damper
 	{
 		#region Fields

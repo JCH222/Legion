@@ -3,6 +3,7 @@ namespace Legion.Physics.Suspension.Parts
 	/// <summary>
 	/// Energy-restituting suspension part.
 	/// </summary>
+	[System.Serializable]
 	public struct Spring
 	{
 		#region Fields
