@@ -42,13 +42,13 @@ namespace Legion.Physics.Suspension
 				float2 nextVariable;
 				if (solvingType == SolvingType.EXPLICIT_EULER)
 				{
-					nextVariable = Solver.SimulateWithExplicitEuler(in spring, in damper, 
-						inverseMass, timeStep, currentLength, currentSpeed, out float _);
+					nextVariable = Solver.SimulateWithExplicitEuler(in spring, in damper, inverseMass, 
+						timeStep, currentLength, currentSpeed, 0.0f, out float _);
 				}
 				else if (solvingType == SolvingType.EXPLICIT_RUNGE_KUTTA_2)
 				{
 					nextVariable = Solver.SimulateWithExplicitRungeKutta2(in spring, in damper, 
-						inverseMass, timeStep, currentLength, currentSpeed, out float _);
+						inverseMass, timeStep, currentLength, currentSpeed, 0.0f, out float _);
 				}
 				else
 				{
